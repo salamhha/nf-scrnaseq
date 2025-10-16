@@ -6,11 +6,19 @@ process seuratImport{
 
     publishDir 'results', mode: 'copy'
 
+    input: 
+	path input_data
+
     output:
-        path "seurat-object.rds", emit: seurat_import
+        path "01_seurat-import.rds", emit: seurat_import
     
     script:
     """
-    Rscript ./seurat-import.R
+    #!/usr/bin/env Rscript
+    library(Seurat)
+    data.counts <- Read10X(data.dir = '$input_data')
+    data <- CreateSeuratObject(counts = data.counts, project = "pbmc3k",
+                            min.cells = 3, min.features = 200)
+    saveRDS(data, file = "01_seurat-import.rds")
     """
 }
