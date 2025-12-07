@@ -19,9 +19,9 @@ process FILTER_SCANPY{
 
     adata = sc.read_h5ad("${input_data}")
     
-    sc.pp.filter_cells(adata, min_genes=500)
-    sc.pp.filter_genes(adata, min_cells=200)
-    adata = adata[adata.obs['pct_counts_mt'] < 5, :]
+    sc.pp.filter_cells(adata, min_genes=${params.filter.min_genes})
+    sc.pp.filter_genes(adata, min_cells=${params.filter.min_cells})
+    adata = adata[adata.obs['pct_counts_mt'] < ${params.filter.max_mt_pct}, :]
 
     adata.write("${sample_id}_02_scanpy-filter.h5ad")
     """        
