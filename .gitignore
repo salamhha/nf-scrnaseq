@@ -1,0 +1,6 @@
+.nextflow
+work/
+.nextflow.log* 
+.nextflow.pid* 
+
+.vscode/
