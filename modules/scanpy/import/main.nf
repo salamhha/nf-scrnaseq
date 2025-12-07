@@ -1,5 +1,4 @@
 process IMPORT_SCANPY{
-    tag { sample_id }
     // 
     // Imports 10x matrix files into anndata using scanpy
     //    
