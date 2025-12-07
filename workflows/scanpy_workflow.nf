@@ -16,7 +16,7 @@ workflow {
                     .map { dir -> tuple(dir.baseName, dir) }
 
     IMPORT_SCANPY(input_ch)
-
-   // FILTER_SCANPY(IMPORT_SCANPY.out.scanpy_import)
+    
+    FILTER_SCANPY(IMPORT_SCANPY.out.scanpy_import)
 
 }
