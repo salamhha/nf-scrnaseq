@@ -10,7 +10,7 @@ process FILTER_SCANPY{
     tuple val(sample_id), path(input_data)
 
     output:
-    tuple val(sample_id), path("${sample_id}_02_scanpy-filter.h5ad"), emit: scanpy_filter
+    tuple val(sample_id), path("${sample_id}_scanpy-filter.h5ad"), emit: scanpy_filter
 
     script:
     """
@@ -23,6 +23,6 @@ process FILTER_SCANPY{
     sc.pp.filter_genes(adata, min_cells=${params.filter.min_cells})
     adata = adata[adata.obs['pct_counts_mt'] < ${params.filter.max_mt_pct}, :]
 
-    adata.write("${sample_id}_02_scanpy-filter.h5ad")
+    adata.write("${sample_id}_scanpy-filter.h5ad")
     """        
 }

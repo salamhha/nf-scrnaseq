@@ -10,8 +10,8 @@ process NORMALIZE_SCANPY{
     tuple val(sample_id), path(input_data)
 
     output:
-    tuple val(sample_id), path("${sample_id}_03_scanpy-normalize.h5ad"), emit: scanpy_filter
-
+    tuple val(sample_id), path("${sample_id}_scanpy-normalize.h5ad"), emit: scanpy_normalize
+    
     script:
     """
     #!/usr/bin/env python3
@@ -23,7 +23,7 @@ process NORMALIZE_SCANPY{
     sc.pp.normalize_total(adata)
     # Logarithmize the data
     sc.pp.log1p(adata)
-    adata.write("${sample_id}_03_scanpy-normalize.h5ad")
+    adata.write("${sample_id}_scanpy-normalize.h5ad")
     """
 }
 

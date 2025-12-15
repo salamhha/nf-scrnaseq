@@ -10,7 +10,7 @@ process IMPORT_SCANPY{
     tuple val(sample_id), path(sample_dir)
 
     output: 
-    tuple val(sample_id), path("${sample_id}_01_scanpy-import.h5ad"), emit: scanpy_import
+    tuple val(sample_id), path("${sample_id}_scanpy-import.h5ad"), emit: scanpy_import
 
     script:
     """
@@ -26,6 +26,6 @@ process IMPORT_SCANPY{
     adata.var["hb"] = adata.var_names.str.contains("^HB[^(P)]")
     sc.pp.calculate_qc_metrics(adata, qc_vars=["mt", "ribo", "hb"], inplace=True, log1p=True)
 
-    adata.write("${sample_id}_01_scanpy-import.h5ad")
+    adata.write("${sample_id}_scanpy-import.h5ad")
     """
 }
