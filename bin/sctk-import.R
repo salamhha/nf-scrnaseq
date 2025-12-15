@@ -1,2 +1,0 @@
-library(singleCellTK)
-importCellRangerV3
