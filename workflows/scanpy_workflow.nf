@@ -2,6 +2,7 @@ nextflow.enable.dsl=2
 
 include { IMPORT_SCANPY } from '../modules/scanpy/import/main.nf'
 include { FILTER_SCANPY } from '../modules/scanpy/filter/main.nf'
+include { NORMALIZE_SCANPY } from '../modules/scanpy/normalize/main.nf'
 
 workflow {
     input_ch = channel
@@ -12,4 +13,6 @@ workflow {
     
     FILTER_SCANPY(IMPORT_SCANPY.out.scanpy_import)
 
+    NORMALIZE_SCANPY(FILTER_SCANPY.out.scanpy_filter)
+    
 }
