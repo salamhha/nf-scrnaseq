@@ -18,7 +18,7 @@ process IMPORT_SCANPY{
     import scanpy as sc
 
     adata = sc.read_10x_mtx("${sample_dir}")
-    # adata.obs["sample"] = sample # Add sample identity
+    adata.obs["sample"] = "${sample_id}" # Add sample identity
 
     # Calculate base QC Metrics
     adata.var["mt"] = adata.var_names.str.startswith("MT-")
