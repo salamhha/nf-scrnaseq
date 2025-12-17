@@ -1,6 +1,6 @@
 process IMPORT_SEURAT{
     // 
-    // Imports 10x matrix files into anndata using seurat
+    // Imports 10x matrix files into a Seurat object
     //    
     conda "${moduleDir}/../environment.yaml"
 
