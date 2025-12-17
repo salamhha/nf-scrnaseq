@@ -26,7 +26,7 @@ process FILTER_SCANPY{
     # Filter cells with mitochondrial read % > max_mt_percent
     adata = adata[adata.obs['pct_counts_mt'] < ${params.filter.max_mt_pct}, :]
     # Filter cells with gene count > max_genes
-    adata = adata[(adata.obs['n_genes_by_counts'] < ${params.max_genes}), :]
+    adata = adata[(adata.obs['n_genes_by_counts'] < ${params.filter.max_genes}), :]
 
     adata.write("${sample_id}_scanpy-filter.h5ad")
     """        
